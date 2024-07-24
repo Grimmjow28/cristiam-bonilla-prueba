@@ -1,1 +1,22 @@
-<p>table-element works!</p>
+<div class="table-element__container">
+    <table>
+        <tr>
+          <th>Logo</th>
+          <th>Nombre del producto</th>
+          <th>Descripción</th>
+          <th>Fecha de Liberacion</th>
+          <th>Fecha de reestructuración</th>
+        </tr>
+        <tr *ngFor="let element of elementsToShow">
+            <td>{{element.logo}}</td>
+            <td>{{element.name}}</td>
+            <td>{{element.descripton}}</td>
+            <td>{{element.dateRelease}}</td>
+            <td>{{element.dateRevision}}</td>
+        </tr>
+      </table>
+      <div>pagination</div>
+      <div>select</div>
+</div>
+
+  
