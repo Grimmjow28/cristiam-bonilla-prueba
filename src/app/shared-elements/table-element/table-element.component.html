@@ -1,18 +1,18 @@
 <div class="table-element__container">
-    <table>
-        <tr>
-          <th>Logo</th>
-          <th>Nombre del producto</th>
-          <th>Descripción</th>
-          <th>Fecha de Liberacion</th>
-          <th>Fecha de reestructuración</th>
+    <table class="table-element__table">
+        <tr class="table-element__header">
+          <th class="table-element__td-th">Logo</th>
+          <th class="table-element__td-th">Nombre del producto</th>
+          <th class="table-element__td-th">Descripción</th>
+          <th class="table-element__td-th">Fecha de Liberacion</th>
+          <th class="table-element__td-th">Fecha de reestructuración</th>
         </tr>
         <tr *ngFor="let element of elementsToShow">
-            <td>{{element.logo}}</td>
-            <td>{{element.name}}</td>
-            <td>{{element.descripton}}</td>
-            <td>{{element.dateRelease}}</td>
-            <td>{{element.dateRevision}}</td>
+            <td class="table-element__td-th">{{element.logo}}</td>
+            <td class="table-element__td-th">{{element.name}}</td>
+            <td class="table-element__td-th">{{element.descripton}}</td>
+            <td class="table-element__td-th">{{element.dateRelease}}</td>
+            <td class="table-element__td-th">{{element.dateRevision}}</td>
         </tr>
       </table>
       <div>pagination</div>
