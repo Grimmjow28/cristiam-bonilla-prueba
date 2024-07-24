@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule} from '@angular/forms'
 })
 export class InputElementComponent {
   @Input() control: FormControl = new FormControl()
-  @Input() controlConfiguration: any ={
+  @Input() controlConfiguration: any = {
     label:'',
     placeholder: '',
     inputType: 'text',
