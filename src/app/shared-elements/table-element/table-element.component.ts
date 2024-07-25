@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { TableElementInterface } from '../services/table.element.interface';
+import { TableElementPaginator } from '../interfaces/table.element.paginator';
 
 @Component({
   selector: 'app-table-element',
@@ -93,7 +95,7 @@ export class TableElementComponent {
     }
   ];
 
-  amountToShow= [
+  amountToShow: TableElementPaginator[]= [
     {
       value: 5,
       label: '5'
@@ -110,16 +112,4 @@ export class TableElementComponent {
 
 }
 
-export interface TableElementInterface {
-  id: string;
-  name: string;
-  descripton: string;
-  logo: string;
-  dateRelease: string;
-  dateRevision: string; 
-}
 
-export interface TableElementPaginator {
-  value: number
-  label: string
-}

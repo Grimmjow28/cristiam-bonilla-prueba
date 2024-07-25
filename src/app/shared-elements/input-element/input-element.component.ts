@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, input, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule} from '@angular/forms'
+import { InputElementInteface } from '../interfaces/input.element.inteface';
 
 @Component({
   selector: 'app-input-element',
@@ -18,8 +19,3 @@ export class InputElementComponent {
   }
 }
 
-export interface InputElementInteface {
-  label?: string;
-  placeholder: string;
-  type: string;
-}
