@@ -15,8 +15,21 @@
             <td class="table-element__td-th">{{element.dateRevision}}</td>
         </tr>
       </table>
-      <div>pagination</div>
-      <div>select</div>
+      <div class="table-element__paginator">
+        <p>{{ elementsToShow.length }} Resultados</p> 
+        <div class="table-element__paginator__buttons">
+            <button class="table-element__paginator__button" style="margin-right: 1rem;"> < </button>
+            <button class="table-element__paginator__button"> > </button>
+        </div>
+      </div>
+      <div class="table-element__select-container">
+        <div class="table-element__select">
+            <select name="select" >
+                <option *ngFor="let paginatorelement of amountToShow" [value]="paginatorelement.value">{{ paginatorelement.label}}</option>
+              </select>
+          </div>
+      </div>
+
 </div>
 
   

@@ -10,12 +10,40 @@
 
 .table-element__header {
     background: lightgray;
-    height: 60px;
+    height: 50px;
 }
 
 .table-element__td-th {
     text-align: left;
     padding: 8px 16px;
-    font-family: sans-serif
+    font-family: sans-serif;
+    border-bottom: 2px solid lightgray;
+    height: 50px;
+}
 
+.table-element__paginator {
+    font-family: sans-serif;
+    margin-top: 1rem;
+    display: flex;
+    width: auto;
+    justify-content: space-between;
+}
+
+.table-element__paginator__buttons {
+    display: flex;
+}
+
+.table-element__paginator__button {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.table-element__select-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.table-element__select select {
+    padding: 0.5rem 1rem;
+    border-radius: 0;
 }

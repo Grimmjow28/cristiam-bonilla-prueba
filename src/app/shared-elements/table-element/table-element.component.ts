@@ -91,8 +91,22 @@ export class TableElementComponent {
       dateRelease: '2025-01-01',
       dateRevision: '2025-01-30', 
     }
-    
   ];
+
+  amountToShow= [
+    {
+      value: 5,
+      label: '5'
+    },
+    {
+      value: 10,
+      label: '10'
+    },
+    {
+      value: 20,
+      label: '20'
+    },
+  ]
 
 }
 
@@ -103,4 +117,9 @@ export interface TableElementInterface {
   logo: string;
   dateRelease: string;
   dateRevision: string; 
+}
+
+export interface TableElementPaginator {
+  value: number
+  label: string
 }
