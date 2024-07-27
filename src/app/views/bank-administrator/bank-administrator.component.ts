@@ -56,7 +56,7 @@ export class BankAdministratorComponent implements OnInit {
       if ($event.value != '') {
         this.filteredBankList = this.originalBankList.filter(element => element.name.includes($event.value));
       } else {
-        this.filteredBankList = this.originalBankList;
+        this.filteredBankList = [...this.originalBankList];
       }
     }
   }
