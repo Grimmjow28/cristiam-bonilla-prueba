@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionButtonComponent, ActionButtonInterface } from '../action-button/action-button.component';
+import { ActionButtonComponent } from '../action-button/action-button.component';
 import { CommonModule } from '@angular/common';
 import { StoreModalService } from '../services/store-modal.service';
 import { Observable, of } from 'rxjs';
 import { ClientService } from '../services/client.service';
+import { ActionButtonInterface } from '../interfaces/action.button.interface';
 
 @Component({
   selector: 'app-modal-view',

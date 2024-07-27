@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TableElementInterface } from './table.element.interface';
+import { RequestAddForm, ResponseRequest } from '../interfaces/response.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -40,17 +40,3 @@ export class ClientService {
 
 }
 
-export interface ResponseRequest {
-  data: any [];
-  message?: string;
-  name?: string;
-}
-
-export interface RequestAddForm {
-  id: string;
-  name: string;
-  description: string;
-  logo: string;
-  date_release: Date;
-  date_revision: Date;
-}

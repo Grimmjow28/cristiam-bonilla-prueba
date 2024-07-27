@@ -3,11 +3,13 @@ import { InputElementComponent } from '../../shared-elements/input-element/input
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormsModule, ReactiveFormsModule, UntypedFormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { InputElementInteface } from '../../shared-elements/interfaces/input.element.inteface';
 import { CommonModule } from '@angular/common';
-import { ActionButtonComponent, ActionButtonInterface } from '../../shared-elements/action-button/action-button.component';
-import { ClientService, RequestAddForm } from '../../shared-elements/services/client.service';
+import { ActionButtonComponent  } from '../../shared-elements/action-button/action-button.component';
+import { ClientService  } from '../../shared-elements/services/client.service';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { StoreModalService } from '../../shared-elements/services/store-modal.service';
+import { ActionButtonInterface } from '../../shared-elements/interfaces/action.button.interface';
+import { RequestAddForm } from '../../shared-elements/interfaces/response.interface';
 
 @Component({
   selector: 'app-add-bank-account',

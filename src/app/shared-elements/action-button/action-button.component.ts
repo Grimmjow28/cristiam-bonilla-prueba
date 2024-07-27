@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActionButtonInterface } from '../interfaces/action.button.interface';
 
 @Component({
   selector: 'app-action-button',
@@ -32,12 +33,4 @@ export class ActionButtonComponent implements OnInit {
     this.clickedButton.emit(this.button.value);
   }
 
-}
-
-export interface ActionButtonInterface {
-  label: string;
-  width: string;
-  value: string | number | boolean;
-  primary: boolean;
-  couldDisabled?: boolean;
 }

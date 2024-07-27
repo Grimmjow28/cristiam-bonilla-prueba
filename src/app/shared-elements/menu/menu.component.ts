@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ActionButtonComponent, ActionButtonInterface } from '../action-button/action-button.component';
+import { ActionButtonComponent } from '../action-button/action-button.component';
 import { CommonModule } from '@angular/common';
+import { ActionButtonInterface } from '../interfaces/action.button.interface';
 
 @Component({
   selector: 'app-menu',
