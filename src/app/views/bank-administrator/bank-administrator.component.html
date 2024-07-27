@@ -1,7 +1,7 @@
 <div class="blank-administrator__container">
     <div style="display: flex; justify-content: space-between;">
-        <app-input-element [control]="filter" [controlConfiguration]="filterComplement"></app-input-element>
+        <app-input-element [useOnchange]="true" [control]="filter" [controlConfiguration]="filterComplement" (catchEvent)="catchChange($event)"></app-input-element>
         <app-action-button (clickedButton)="addBankProduct()"></app-action-button>
     </div>
-    <app-table-element [elementsToShow]="originalBankList" style="margin-top: 2rem; display: block;"></app-table-element>
+    <app-table-element [elementsToShow]="filteredBankList" style="margin-top: 2rem; display: block;"></app-table-element>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { InputElementComponent } from "../../shared-elements/input-element/input-element.component";
 import { TableElementComponent } from "../../shared-elements/table-element/table-element.component";
 import { FormControl } from '@angular/forms';
@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 export class BankAdministratorComponent implements OnInit {
 
   originalBankList: TableElementInterface[] = [];
-
+  filteredBankList: TableElementInterface[] = [];
 
   filter: FormControl = new FormControl('');
   filterComplement: InputElementInteface = {
@@ -35,11 +35,22 @@ export class BankAdministratorComponent implements OnInit {
 
   getBanks() {
     this.clientService.getBanckProducts().subscribe(response => {
-      this.originalBankList = response.data
+      this.originalBankList = response.data;
+      this.filteredBankList = this.originalBankList;
     })
   }
 
   addBankProduct() {
     this.roter.navigateByUrl('/add-bank-product')
+  }
+
+  catchChange($event: any) {
+    if ($event.event == 'change') {
+      if ($event.value != '') {
+        this.filteredBankList = this.originalBankList.filter(element => element.name.includes($event.value));
+      } else {
+        this.filteredBankList = this.originalBankList;
+      }
+    }
   }
 }

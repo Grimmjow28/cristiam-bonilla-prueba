@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, input, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, input, Input, Output } from '@angular/core';
 import { FormControl, ReactiveFormsModule} from '@angular/forms'
 import { InputElementInteface } from '../interfaces/input.element.inteface';
 
@@ -20,6 +20,8 @@ export class InputElementComponent  {
       { key: 'required', label: 'Este campo es requerido' },
     ]
   }
+  @Input() useOnchange: boolean = false;
+  @Output() catchEvent: EventEmitter<any> = new EventEmitter();
 
   hasError: boolean = false;
 
@@ -40,5 +42,13 @@ export class InputElementComponent  {
       return ''
     }
   }
+
+  change($event:any) {
+    if (this.useOnchange) {
+      const newValue = ($event.target as HTMLInputElement).value;
+      this.catchEvent.emit({event: 'change', value: newValue});
+    }
+  }
 }
+
 

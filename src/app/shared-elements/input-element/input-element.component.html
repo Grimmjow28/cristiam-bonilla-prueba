@@ -3,6 +3,7 @@
     <input class="input-element__input" 
     [ngClass]="{'input-element__input__error': control.touched && this.control.errors }"
     [formControl]="control" [type]="controlConfiguration.type" 
-    [placeholder]="controlConfiguration.placeholder">
+    [placeholder]="controlConfiguration.placeholder"
+    (keyup)="change($event)">
     <span class="input-element__error"> {{  content() }}</span>
 </div>

@@ -24,7 +24,6 @@ export class ClientService {
 
   sendForm(addForm: RequestAddForm) {
     return this._httpClient.post<ResponseRequest>('http://localhost:3002/bp/products', addForm, this.options)
-
   }
 
 }
