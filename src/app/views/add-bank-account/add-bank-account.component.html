@@ -6,8 +6,8 @@
             [control]="element.main" [controlConfiguration]="element.complement"></app-input-element>
         </div>
         <div class="add-bank-account__formulario__buttons">
-            <app-action-button *ngFor="let button of buttons" [button]="button" 
-            [disabled]="addForm.invalid && button.couldDisabled || addForm.pristine && button.couldDisabled"  
+            <app-action-button *ngFor="let button of buttons; let j = index" [button]="button" 
+            [disabled]="addForm.invalid && button.couldDisabled || addForm.pristine && button.couldDisabled || editDisabled && j === 0"  
             (clickedButton)="catchClick(button.label)"></app-action-button>
         </div>
     </form>

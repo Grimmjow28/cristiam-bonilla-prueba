@@ -7,6 +7,7 @@ import { ActionButtonComponent, ActionButtonInterface } from '../../shared-eleme
 import { ClientService, RequestAddForm } from '../../shared-elements/services/client.service';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
+import { StoreModalService } from '../../shared-elements/services/store-modal.service';
 
 @Component({
   selector: 'app-add-bank-account',
@@ -26,27 +27,55 @@ export class AddBankAccountComponent implements OnInit {
     {
       label: 'Reiniciar',
       width: '120px',
-      value: 'reset',
+      value: 'reiniciar',
       primary: false
     },
     {
       label: 'Enviar',
       width: '120px',
-      value: 'reset',
+      value: 'enviar',
       primary: true,
       couldDisabled: true
     }
   ]
 
   addForm: UntypedFormGroup;
+  editDisabled: boolean = false;
+  initialId: string = '';
 
-  constructor(private formBuilder: FormBuilder, private clientService: ClientService, private roter: Router){}
+  constructor(private formBuilder: FormBuilder, 
+             private clientService: ClientService, 
+             private roter: Router, 
+             private storeModalService: StoreModalService){}
 
   ngOnInit(): void {
 
+
+    let initialName = '';
+    let initialDescription = '';
+    let initialLogo = '';
+    let initialDateLiberation = '';
+    let initialDateRevision = '';
+
+    let currentURl = this.roter.url;
+    if(currentURl.includes('edit-bank-product')) {
+      this.storeModalService.elementToEdit$.subscribe(resp => {
+        this.initialId = resp.id;
+        initialName = resp.name;
+        initialDescription = resp.description;
+        initialLogo = resp.logo;
+        initialDateLiberation = resp.date_release;
+        initialDateRevision = resp.date_revision;
+        this.editDisabled = true;
+        this.buttons[1].label = "Editar";
+        this.buttons[1].value = "editar";
+      });
+    }
+
+
     this.formfieldList = [
       {
-        main: new FormControl('', {
+        main: new FormControl(this.initialId, {
           validators: [Validators.required, Validators.minLength(3), Validators.maxLength(10)],
           asyncValidators: [ IdValidator.verifyId(this.clientService) ]
         } ),
@@ -63,7 +92,7 @@ export class AddBankAccountComponent implements OnInit {
         }
       },    
       {
-        main: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]),
+        main: new FormControl(initialName, [Validators.required, Validators.minLength(6), Validators.maxLength(100)]),
         complement: {
           label:'Nombre',
           placeholder: 'nombre..',
@@ -76,7 +105,7 @@ export class AddBankAccountComponent implements OnInit {
         }
       },
       {
-        main: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]),
+        main: new FormControl(initialDescription, [Validators.required, Validators.minLength(10), Validators.maxLength(200)]),
         complement: {
           label:'Descripcion',
           placeholder: 'descripcion..',
@@ -89,7 +118,7 @@ export class AddBankAccountComponent implements OnInit {
         }
       },
       {
-        main: new FormControl('', [Validators.required]),
+        main: new FormControl(initialLogo, [Validators.required]),
         complement: {
           label:'Logo',
           placeholder: 'descripcion..',
@@ -100,7 +129,7 @@ export class AddBankAccountComponent implements OnInit {
         }
       },
       {
-        main: new FormControl('', [Validators.required]),
+        main: new FormControl(initialDateLiberation, [Validators.required]),
         complement: {
           label:'Fecha de Liberacion',
           placeholder: 'dd/mm/yyyy..',
@@ -111,7 +140,7 @@ export class AddBankAccountComponent implements OnInit {
         }
       },
       {
-        main: new FormControl('', [Validators.required]),
+        main: new FormControl(initialDateRevision, [Validators.required]),
         complement: {
           label:'Fecha de Revision',
           placeholder: 'dd/mm/yyyy..',
@@ -123,6 +152,10 @@ export class AddBankAccountComponent implements OnInit {
       }
     ];
 
+    if(this.editDisabled) {
+      this.formfieldList[0].main.disable();
+    }
+
     this.addForm = this.formBuilder.group({
       id: this.formfieldList[0].main,
       name: this.formfieldList[1].main,
@@ -131,6 +164,7 @@ export class AddBankAccountComponent implements OnInit {
       date_release: this.formfieldList[4].main,
       date_revision: this.formfieldList[5].main
     })
+
   }
 
   catchClick(event: string | number | boolean) {
@@ -138,6 +172,8 @@ export class AddBankAccountComponent implements OnInit {
       this.addForm.reset();
     } else if (event == 'Enviar') {
       this.sendForm();
+    } else if (event == 'Editar') {
+      this.editForm();
     }
   }
 
@@ -151,6 +187,19 @@ export class AddBankAccountComponent implements OnInit {
       let message = error.message;
       alert(`${message}, Registro con Id duplicado`);
     });
+  }
+
+  editForm() {
+    let form: RequestAddForm = this.addForm.value;
+    form.id = this.initialId;
+    this.clientService.editForm(form, this.initialId).subscribe(resp => {
+      if(resp.message == "Product updated successfully") {
+        this.roter.navigateByUrl('/bank-administrator')
+      }
+    }, error => {
+      let message = error.message;
+      alert(message);
+    })
   }
 }
 

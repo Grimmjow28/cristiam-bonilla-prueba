@@ -15,5 +15,11 @@ export const routes: Route[]= [
         path:'add-bank-product',
         loadComponent: () => 
            import('../app/views/add-bank-account/add-bank-account.component').then(mod => mod.AddBankAccountComponent)
+    },
+    {
+        path:'edit-bank-product',
+        loadComponent: () => 
+           import('../app/views/add-bank-account/add-bank-account.component').then(mod => mod.AddBankAccountComponent)
     }
+
 ];

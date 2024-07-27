@@ -4,6 +4,7 @@ import { TableElementInterface } from '../services/table.element.interface';
 import { TableElementPaginator } from '../interfaces/table.element.paginator';
 import { MenuComponent } from '../menu/menu.component';
 import { StoreModalService } from '../services/store-modal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-element',
@@ -40,7 +41,7 @@ export class TableElementComponent implements OnInit, OnChanges {
     },
   ]
 
-  constructor(private storeModalService: StoreModalService) {}
+  constructor(private storeModalService: StoreModalService, private router: Router) {}
 
   ngOnInit(): void {
     this.setElements();
@@ -78,9 +79,16 @@ export class TableElementComponent implements OnInit, OnChanges {
     this.setElements();
   }
 
+  editar(element: TableElementInterface) {
+    this.storeModalService.elementToEdit(element);
+    this.router.navigateByUrl(`edit-bank-product?id=${element.id}`)
+  }
+
   action($event: string, element: TableElementInterface) {
     if($event == 'Eliminar') {
       this.openModal(element);
+    } else if ($event == 'Editar') {
+      this.editar(element);
     }
   }
 

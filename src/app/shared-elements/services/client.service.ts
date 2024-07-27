@@ -34,6 +34,10 @@ export class ClientService {
     return this._httpClient.delete<ResponseRequest>(`http://localhost:3002/bp/products/${id}`, this.options)
   }
 
+  editForm(addForm: RequestAddForm, id: string) {
+    return this._httpClient.put<ResponseRequest>(`http://localhost:3002/bp/products/${id}`, addForm, this.options)
+  }
+
 }
 
 export interface ResponseRequest {
