@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModalViewComponent } from './modal-view.component';
+import { ClientService } from '../services/client.service';
+import { StoreModalService } from '../services/store-modal.service';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
+
 
 describe('ModalViewComponent', () => {
   let component: ModalViewComponent;
@@ -8,7 +13,11 @@ describe('ModalViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModalViewComponent]
+      imports: [ModalViewComponent],
+      providers: [
+         provideHttpClient(),
+        provideHttpClientTesting() ,
+        StoreModalService,ClientService]        
     })
     .compileComponents();
 

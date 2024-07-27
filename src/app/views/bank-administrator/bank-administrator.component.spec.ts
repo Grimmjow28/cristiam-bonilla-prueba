@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BankAdministratorComponent } from './bank-administrator.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('BankAdministratorComponent', () => {
   let component: BankAdministratorComponent;
@@ -8,7 +10,10 @@ describe('BankAdministratorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BankAdministratorComponent]
+      imports: [BankAdministratorComponent],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting() ]   
     })
     .compileComponents();
 
