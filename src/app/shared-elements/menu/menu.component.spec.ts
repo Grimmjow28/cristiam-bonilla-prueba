@@ -20,4 +20,10 @@ describe('MenuComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('select button', () => {
+    component.show = false;
+    component.selectedButton('label');
+    expect(component.show).toBeTrue();
+  })
 });
