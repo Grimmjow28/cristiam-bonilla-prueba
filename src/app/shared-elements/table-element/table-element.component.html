@@ -15,7 +15,7 @@
             <td class="table-element__td-th">{{element.date_release}}</td>
             <td class="table-element__td-th">{{element.date_revision}}</td>
             <td class="table-element__td-th">
-              <app-menu (selected)="action($event)">
+              <app-menu (selected)="action($event, element)">
               </app-menu>
             </td>
         </tr>

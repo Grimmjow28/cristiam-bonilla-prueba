@@ -44,5 +44,6 @@ export class MenuComponent {
 
   selectedButton(label: string) {
     this.selected.emit(label);
+    this.showMenu();
   }
 }

@@ -1,10 +1,10 @@
 <div class="modal-view__main-container">
     <div class="modal-view__body">
-        <h3 class="modal-view__title">¿Estas seguro de eliminar el producto hjkhk ?</h3>
+        <h3 class="modal-view__title">¿Estas seguro de eliminar el producto {{ nombre | async }} ?</h3>
         <div class="modal-view__buttons">
-            <app-action-button *ngFor="let button of buttons" [button]="button"></app-action-button>
+            <app-action-button *ngFor="let button of buttons" [button]="button" (clickedButton)="catchEvent($event)"></app-action-button>
         </div>
     </div>
-    <div class="modal-view__close-back">
+    <div class="modal-view__close-back" (click)="closeModal()">
     </div>
 </div>

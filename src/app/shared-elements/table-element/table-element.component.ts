@@ -3,6 +3,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { TableElementInterface } from '../services/table.element.interface';
 import { TableElementPaginator } from '../interfaces/table.element.paginator';
 import { MenuComponent } from '../menu/menu.component';
+import { StoreModalService } from '../services/store-modal.service';
 
 @Component({
   selector: 'app-table-element',
@@ -38,6 +39,8 @@ export class TableElementComponent implements OnInit, OnChanges {
       label: '20'
     },
   ]
+
+  constructor(private storeModalService: StoreModalService) {}
 
   ngOnInit(): void {
     this.setElements();
@@ -75,14 +78,16 @@ export class TableElementComponent implements OnInit, OnChanges {
     this.setElements();
   }
 
-  action($event: string) {
+  action($event: string, element: TableElementInterface) {
     if($event == 'Eliminar') {
-
+      this.openModal(element);
     }
   }
 
-  openModal() {
-    
+  openModal(element: TableElementInterface) {
+    this.storeModalService.id(element.id);
+    this.storeModalService.title(element.name);
+    this.storeModalService.openModal(true);
   }
 
 

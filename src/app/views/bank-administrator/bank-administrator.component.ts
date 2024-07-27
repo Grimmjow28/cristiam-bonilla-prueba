@@ -7,6 +7,7 @@ import { TableElementInterface } from '../../shared-elements/services/table.elem
 import { InputElementInteface } from '../../shared-elements/interfaces/input.element.inteface';
 import { ActionButtonComponent } from '../../shared-elements/action-button/action-button.component';
 import { Router } from '@angular/router';
+import { StoreModalService } from '../../shared-elements/services/store-modal.service';
 
 @Component({
   selector: 'app-bank-administrator',
@@ -27,10 +28,16 @@ export class BankAdministratorComponent implements OnInit {
     errors: []
   }
 
-  constructor(private clientService: ClientService, private roter: Router) {}
+  constructor(private clientService: ClientService, private roter: Router, private storeModalService: StoreModalService) {}
 
   ngOnInit(): void {
     this.getBanks();
+    this.storeModalService.reloadTable$.subscribe(reload => {
+      if(reload) {
+        this.getBanks();
+        this.storeModalService.reloadTable(false);
+      }
+    })
   }
 
   getBanks() {

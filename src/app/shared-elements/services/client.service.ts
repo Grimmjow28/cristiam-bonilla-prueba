@@ -30,11 +30,16 @@ export class ClientService {
     return this._httpClient.get<boolean>(`http://localhost:3002/bp/products/verification/${id}`, this.options)
   }
 
+  deleteProduct(id: string) {
+    return this._httpClient.delete<ResponseRequest>(`http://localhost:3002/bp/products/${id}`, this.options)
+  }
+
 }
 
 export interface ResponseRequest {
   data: any [];
   message?: string;
+  name?: string;
 }
 
 export interface RequestAddForm {
