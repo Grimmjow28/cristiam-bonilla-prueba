@@ -1,9 +1,10 @@
 export interface TableElementInterface {
     id: string;
     name: string;
-    descripton: string;
+    description: string;
     logo: string;
-    dateRelease: string;
-    dateRevision: string; 
-  }
-  
+    date_release: string;
+    date_revision: string; 
+}
+
+

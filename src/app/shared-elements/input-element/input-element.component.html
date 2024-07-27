@@ -1,4 +1,8 @@
 <div class="input-element__container">
     <label class="input-element__label" *ngIf="controlConfiguration.label" for="">{{controlConfiguration.label}}</label>
-    <input class="input-element__input" [formControl]="control" [type]="controlConfiguration.type" [placeholder]="controlConfiguration.placeholder">
+    <input class="input-element__input" 
+    [ngClass]="{'input-element__input__error': control.touched && this.control.errors }"
+    [formControl]="control" [type]="controlConfiguration.type" 
+    [placeholder]="controlConfiguration.placeholder">
+    <span class="input-element__error"> {{  content() }}</span>
 </div>

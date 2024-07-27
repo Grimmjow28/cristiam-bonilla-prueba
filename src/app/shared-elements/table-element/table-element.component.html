@@ -7,24 +7,25 @@
           <th class="table-element__td-th">Fecha de Liberacion</th>
           <th class="table-element__td-th">Fecha de reestructuración</th>
         </tr>
-        <tr *ngFor="let element of elementsToShow">
+        <tr *ngFor="let element of elementsTable">
             <td class="table-element__td-th">{{element.logo}}</td>
             <td class="table-element__td-th">{{element.name}}</td>
-            <td class="table-element__td-th">{{element.descripton}}</td>
-            <td class="table-element__td-th">{{element.dateRelease}}</td>
-            <td class="table-element__td-th">{{element.dateRevision}}</td>
+            <td class="table-element__td-th">{{element.description}}</td>
+            <td class="table-element__td-th">{{element.date_release}}</td>
+            <td class="table-element__td-th">{{element.date_revision}}</td>
         </tr>
       </table>
       <div class="table-element__paginator">
         <p>{{ elementsToShow.length }} Resultados</p> 
         <div class="table-element__paginator__buttons">
-            <button class="table-element__paginator__button" style="margin-right: 1rem;"> < </button>
-            <button class="table-element__paginator__button"> > </button>
+            <button class="table-element__paginator__button" style="margin-right: 1rem;" (click)="changePage(-1)"> < </button>
+            <p class="table-element__paginator__indicator">{{ initial + 1 }} - {{ final }}</p>
+            <button class="table-element__paginator__button" (click)="changePage(1)"> > </button>
         </div>
       </div>
       <div class="table-element__select-container">
         <div class="table-element__select">
-            <select name="select" >
+            <select name="select" (change)="SelectValue($event.target)" >
                 <option *ngFor="let paginatorelement of amountToShow" [value]="paginatorelement.value">{{ paginatorelement.label}}</option>
               </select>
           </div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, input, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule} from '@angular/forms'
 import { InputElementInteface } from '../interfaces/input.element.inteface';
 
@@ -10,12 +10,35 @@ import { InputElementInteface } from '../interfaces/input.element.inteface';
   templateUrl: './input-element.component.html',
   styleUrl: './input-element.component.scss'
 })
-export class InputElementComponent {
+export class InputElementComponent  {
   @Input() control: FormControl = new FormControl()
   @Input() controlConfiguration: InputElementInteface = {
     label:'',
     placeholder: '',
     type: 'text',
+    errors: [
+      { key: 'required', label: 'Este campo es requerido' },
+    ]
+  }
+
+  hasError: boolean = false;
+
+  content() {
+    if(this.control.touched && this.control.errors && Object.keys(this.control.errors).length) {
+      let errorReturned = '';
+      let key = Object.keys(this.control.errors)[0];
+      for(let element of this.controlConfiguration.errors) {
+        if (element.key == key) {
+          errorReturned = element.label;
+          break;
+        }
+      }
+      this.hasError = true;
+      return errorReturned;
+    } else {
+      this.hasError = false;
+      return ''
+    }
   }
 }
 

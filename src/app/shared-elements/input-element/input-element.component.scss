@@ -19,3 +19,14 @@
     border-color: lightgray;
     padding: 5px 10px;
 }
+
+.input-element__input__error {
+    border-color: red;
+}
+
+.input-element__error {
+    position: relative; 
+    height: 0;     
+    color: darkred;
+    font-family: math;
+}

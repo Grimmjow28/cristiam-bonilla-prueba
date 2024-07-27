@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TableElementInterface } from '../services/table.element.interface';
 import { TableElementPaginator } from '../interfaces/table.element.paginator';
 
@@ -10,90 +10,18 @@ import { TableElementPaginator } from '../interfaces/table.element.paginator';
   templateUrl: './table-element.component.html',
   styleUrl: './table-element.component.scss'
 })
-export class TableElementComponent {
+export class TableElementComponent implements OnInit, OnChanges {
 
-  @Input() elementsToShow: TableElementInterface[] = [
-    {
-      id: 'uno',
-      name: 'gato',
-      descripton: 'es un gato muy cool',
-      logo: 'asset-1',
-      dateRelease: '2025-01-01',
-      dateRevision: '2025-01-30', 
-    },
-    {
-      id: 'uno',
-      name: 'gato',
-      descripton: 'es un gato muy cool',
-      logo: 'asset-1',
-      dateRelease: '2025-01-01',
-      dateRevision: '2025-01-30', 
-    },
-    {
-      id: 'uno',
-      name: 'gato',
-      descripton: 'es un gato muy cool',
-      logo: 'asset-1',
-      dateRelease: '2025-01-01',
-      dateRevision: '2025-01-30', 
-    },
-    {
-      id: 'uno',
-      name: 'gato',
-      descripton: 'es un gato muy cool',
-      logo: 'asset-1',
-      dateRelease: '2025-01-01',
-      dateRevision: '2025-01-30', 
-    },
-    {
-      id: 'uno',
-      name: 'gato',
-      descripton: 'es un gato muy cool',
-      logo: 'asset-1',
-      dateRelease: '2025-01-01',
-      dateRevision: '2025-01-30', 
-    },
-    {
-      id: 'uno',
-      name: 'gato',
-      descripton: 'es un gato muy cool',
-      logo: 'asset-1',
-      dateRelease: '2025-01-01',
-      dateRevision: '2025-01-30', 
-    }
-    , {
-      id: 'uno',
-      name: 'gato',
-      descripton: 'es un gato muy cool',
-      logo: 'asset-1',
-      dateRelease: '2025-01-01',
-      dateRevision: '2025-01-30', 
-    }
-    , {
-      id: 'uno',
-      name: 'gato',
-      descripton: 'es un gato muy cool',
-      logo: 'asset-1',
-      dateRelease: '2025-01-01',
-      dateRevision: '2025-01-30', 
-    },
-    {
-      id: 'uno',
-      name: 'gato',
-      descripton: 'es un gato muy cool',
-      logo: 'asset-1',
-      dateRelease: '2025-01-01',
-      dateRevision: '2025-01-30', 
-    },
-    {
-      id: 'uno',
-      name: 'gato',
-      descripton: 'es un gato muy cool',
-      logo: 'asset-1',
-      dateRelease: '2025-01-01',
-      dateRevision: '2025-01-30', 
-    }
-  ];
+
+  @Input() elementsToShow: TableElementInterface[] = [];
+  numberElements = 5;
+  page = 1;
+  maxPages: number = 1;
+
+  initial: number = 1
+  final: number = this.numberElements;
+
+  elementsTable: TableElementInterface[] = [];
 
   amountToShow: TableElementPaginator[]= [
     {
@@ -109,6 +37,43 @@ export class TableElementComponent {
       label: '20'
     },
   ]
+
+  ngOnInit(): void {
+    this.setElements();
+    this.calcMaxPages();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.setElements();
+    this.calcMaxPages();
+  }
+
+  calcMaxPages() {
+    this.maxPages = Math.ceil(this.elementsToShow.length / this.numberElements);
+  }
+
+  setElements() {
+    this.initial = this.page*this.numberElements - this.numberElements;
+    this.final = this.page*this.numberElements;
+    this.elementsTable = this.elementsToShow.slice(this.initial,this.final);
+  }
+
+  changePage(move: number) {
+    this.page = this.page + move;
+    if (this.page <1) this.page = 1;
+    if (this.page > this.maxPages) this.page = this.maxPages;
+    this.setElements();
+  }
+
+  SelectValue(target: any) {
+    let newP = Number(target.value);
+    this.numberElements = newP;
+    this.final = this.numberElements;
+    this.initial = 1;
+    this.calcMaxPages();
+    this.setElements();
+  }
+
 
 }
 

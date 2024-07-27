@@ -18,6 +18,8 @@ export class ActionButtonComponent implements OnInit {
     primary: true,
   };
 
+  @Input() disabled: boolean| null | undefined = false;
+
   backGround = '';
 
   @Output() clickedButton: EventEmitter<string | number | boolean> = new EventEmitter();
@@ -37,4 +39,5 @@ export interface ActionButtonInterface {
   width: string;
   value: string | number | boolean;
   primary: boolean;
+  couldDisabled?: boolean;
 }

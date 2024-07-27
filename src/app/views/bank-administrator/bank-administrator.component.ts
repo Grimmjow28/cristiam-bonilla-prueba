@@ -23,7 +23,8 @@ export class BankAdministratorComponent implements OnInit {
   filter: FormControl = new FormControl('');
   filterComplement: InputElementInteface = {
     placeholder: 'Search..',
-    type: 'text'
+    type: 'text',
+    errors: []
   }
 
   constructor(private clientService: ClientService, private roter: Router) {}
@@ -40,6 +41,5 @@ export class BankAdministratorComponent implements OnInit {
 
   addBankProduct() {
     this.roter.navigateByUrl('/add-bank-product')
-
   }
 }

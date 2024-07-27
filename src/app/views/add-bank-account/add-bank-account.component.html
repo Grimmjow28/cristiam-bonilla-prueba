@@ -1,14 +1,14 @@
 <div class="add-bank-account__container">
     <h1 class="add-bank-account__tittle">Formulario de Registro</h1>
-    <form style="padding: 1rem; height: -webkit-fill-available; display: grid; align-content: space-between;">
-        <div style="display: flex; flex-wrap: wrap; grid-gap: 4%">
-            <app-input-element *ngFor="let element of formfieldList" style="display: block; width: 48%; margin-bottom: 2rem;"
+    <form class="add-bank-account__formulario"  #addFormtp="ngForm">
+        <div class="add-bank-account__formulario__fields">
+            <app-input-element *ngFor="let element of formfieldList" class="add-bank-account__formulario__input"
             [control]="element.main" [controlConfiguration]="element.complement"></app-input-element>
         </div>
-
-        <div style="margin-bottom: 1rem; display: flex; flex-direction: row; justify-content: space-evenly;">
-            <app-action-button *ngFor="let button of buttons" [button]="button"></app-action-button>
+        <div class="add-bank-account__formulario__buttons">
+            <app-action-button *ngFor="let button of buttons" [button]="button" 
+            [disabled]="addForm.invalid && button.couldDisabled || addForm.pristine && button.couldDisabled"  
+            (clickedButton)="catchClick(button.label)"></app-action-button>
         </div>
-
     </form>
 </div>
