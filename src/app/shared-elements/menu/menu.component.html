@@ -1,0 +1,7 @@
+<app-action-button [button]="menu" (clickedButton)="showMenu()">
+</app-action-button>
+<div class="menu__position" *ngIf="show">
+    <div class="menu__container" >
+        <app-action-button class="menu__button" *ngFor="let menu of acciones" [button]="menu" (clickedButton)="selectedButton(menu.label)" ></app-action-button>
+    </div>
+</div>

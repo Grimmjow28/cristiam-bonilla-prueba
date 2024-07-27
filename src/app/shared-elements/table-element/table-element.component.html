@@ -6,6 +6,7 @@
           <th class="table-element__td-th">Descripción</th>
           <th class="table-element__td-th">Fecha de Liberacion</th>
           <th class="table-element__td-th">Fecha de reestructuración</th>
+          <th class="table-element__td-th">modificar/Eliminar</th>
         </tr>
         <tr *ngFor="let element of elementsTable">
             <td class="table-element__td-th">{{element.logo}}</td>
@@ -13,6 +14,10 @@
             <td class="table-element__td-th">{{element.description}}</td>
             <td class="table-element__td-th">{{element.date_release}}</td>
             <td class="table-element__td-th">{{element.date_revision}}</td>
+            <td class="table-element__td-th">
+              <app-menu (selected)="action($event)">
+              </app-menu>
+            </td>
         </tr>
       </table>
       <div class="table-element__paginator">

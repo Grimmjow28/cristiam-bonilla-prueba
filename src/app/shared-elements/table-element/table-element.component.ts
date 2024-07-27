@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TableElementInterface } from '../services/table.element.interface';
 import { TableElementPaginator } from '../interfaces/table.element.paginator';
+import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-table-element',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MenuComponent],
   templateUrl: './table-element.component.html',
   styleUrl: './table-element.component.scss'
 })
@@ -73,6 +74,17 @@ export class TableElementComponent implements OnInit, OnChanges {
     this.calcMaxPages();
     this.setElements();
   }
+
+  action($event: string) {
+    if($event == 'Eliminar') {
+
+    }
+  }
+
+  openModal() {
+    
+  }
+
 
 
 }

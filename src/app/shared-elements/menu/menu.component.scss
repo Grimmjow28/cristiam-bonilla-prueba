@@ -1,0 +1,22 @@
+.menu__position {
+    position: relative; 
+    top: -50px; 
+    left: 125px;
+    height: 0
+    ;
+}
+
+.menu__container {
+    display: flow; 
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 5px;
+    background: aliceblue;
+    width: min-content;
+}
+
+.menu__button {
+    display: block;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
