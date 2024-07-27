@@ -31,8 +31,8 @@ export class BankAdministratorComponent implements OnInit {
   }
 
   getBanks() {
-    this.clientService.getBanckProducts().subscribe(banks => {
-      this.originalBankList = banks;
+    this.clientService.getBanckProducts().subscribe(response => {
+      this.originalBankList = response.data
     })
     
   }
