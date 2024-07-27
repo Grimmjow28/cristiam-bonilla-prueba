@@ -1,21 +1,3 @@
-:host {
-    display: flex;
-    flex: 1 1 auto;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-}
-
-
-.app-component-main__container{
-    display: flex;
-    flex: 1 1 auto;
-    width: 100%;
-    height: fit-content;
-    background: lightgray;
-    flex-direction: column;
-}
-
 .app-component-main__container * {
     display: contents;
 }

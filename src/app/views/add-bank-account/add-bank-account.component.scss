@@ -1,0 +1,18 @@
+.add-bank-account__container {
+    display: flex;
+    flex-direction: column; 
+    height: 65%; 
+    margin: 10rem 20rem;
+    background: white;
+    border-radius: 5px;
+}
+
+.add-bank-account__tittle {
+    font-size: 1.5em;
+    font-family: math;
+    text-align: center;
+    color: black;
+    border-bottom: 2px solid lightgray;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+}

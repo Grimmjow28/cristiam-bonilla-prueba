@@ -1,4 +1,4 @@
-<div>
-    <label *ngIf="controlConfiguration.label" for="">{{controlConfiguration.label}}</label>
+<div class="input-element__container">
+    <label class="input-element__label" *ngIf="controlConfiguration.label" for="">{{controlConfiguration.label}}</label>
     <input class="input-element__input" [formControl]="control" [type]="controlConfiguration.type" [placeholder]="controlConfiguration.placeholder">
 </div>
