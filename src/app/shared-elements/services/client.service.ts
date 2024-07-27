@@ -26,6 +26,10 @@ export class ClientService {
     return this._httpClient.post<ResponseRequest>('http://localhost:3002/bp/products', addForm, this.options)
   }
 
+  verifyId(id: string) {
+    return this._httpClient.get<boolean>(`http://localhost:3002/bp/products/verification/${id}`, this.options)
+  }
+
 }
 
 export interface ResponseRequest {

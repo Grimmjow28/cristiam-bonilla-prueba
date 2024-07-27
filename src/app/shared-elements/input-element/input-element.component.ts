@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, EventEmitter, input, Input, Output } from '@angular/core';
-import { FormControl, ReactiveFormsModule} from '@angular/forms'
+import { AbstractControl, FormControl, ReactiveFormsModule, ValidationErrors, ValidatorFn} from '@angular/forms'
 import { InputElementInteface } from '../interfaces/input.element.inteface';
 
 @Component({
@@ -28,7 +28,8 @@ export class InputElementComponent  {
   content() {
     if(this.control.touched && this.control.errors && Object.keys(this.control.errors).length) {
       let errorReturned = '';
-      let key = Object.keys(this.control.errors)[0];
+      let keys = Object.keys(this.control.errors)
+      let key = keys[0];
       for(let element of this.controlConfiguration.errors) {
         if (element.key == key) {
           errorReturned = element.label;
@@ -50,5 +51,6 @@ export class InputElementComponent  {
     }
   }
 }
+
 
 
